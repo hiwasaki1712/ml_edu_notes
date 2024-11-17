@@ -12,7 +12,9 @@
 | 正例 True | TP | FN |
 | 負例 False | FP | TN |
 
-多クラス分類の場合は、Nクラスとして「正解クラス」対「予測クラス」の $N \times N$ 表になる。
+多クラス分類の場合は、Nクラスとして「正解クラス」対「予測クラス」の $N \times N$ 表になる。  
+下図は、3クラス分類のときの例
+![confusion_matrix_penguins](https://github.com/user-attachments/assets/68cddaec-a17f-4082-9d69-5cb743363146)
 
 
 ## 2値分類での指標の定義
@@ -57,10 +59,13 @@ Scikit-learn での定義と解説は[こちら](https://scikit-learn.org/1.5/mo
 ## [ROC (reciever operating characteristic) 曲線](https://scikit-learn.org/1.5/modules/model_evaluation.html#roc-metrics)
 分類モデルが予測した確率をラベルに変換するときの閾値を変化させたときの真陽性率 (TPR) と儀陽性率 (FPR) の関係を図示したもの。
 縦軸に TPR 、横軸に FPR をとる。  
+![roc_penguins](https://github.com/user-attachments/assets/299d63be-2732-4f9a-afb0-8a8c4dc08b61)
 
 ### ROC曲線の読み方
 * 左上の点が理想的で、TPR=1、FPR=0の全て正しく答えられた状態  
 * 右下の点が最悪で、TPR=0、FPR=1で全て間違える状態
+* 左下の点は、全て「負」と答える状態
+* 右上の点は、全て「正」と答える状態
 * 左下から右上をつなぐ直線が chance level で、ランダムに答えるモデルだとこの線上にのる。
 このとき AUC=0.5 となる
 * 曲線の下側の面積 (AUC; area under the curve) が1に近いほど理想に近づく

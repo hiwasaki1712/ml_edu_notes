@@ -14,7 +14,7 @@
 
 多クラス分類の場合は、Nクラスとして「正解クラス」対「予測クラス」の $N \times N$ 表になる。  
 下図は、3クラス分類のときの例
-![confusion_matrix_penguins](https://github.com/user-attachments/assets/68cddaec-a17f-4082-9d69-5cb743363146)
+![confusion_matrix_penguins](figures_dir/confusion_matrix_penguins.png)
 
 
 ## 2値分類での指標の定義
@@ -59,7 +59,7 @@ Scikit-learn での定義と解説は[こちら](https://scikit-learn.org/1.5/mo
 ## [ROC (reciever operating characteristic) 曲線](https://scikit-learn.org/1.5/modules/model_evaluation.html#roc-metrics)
 分類モデルが予測した確率をラベルに変換するときの閾値を変化させたときの真陽性率 (TPR) と儀陽性率 (FPR) の関係を図示したもの。
 縦軸に TPR 、横軸に FPR をとる。  
-![roc_penguins](https://github.com/user-attachments/assets/299d63be-2732-4f9a-afb0-8a8c4dc08b61)
+![roc_penguins](figures_dir/roc_penguins.png)
 
 ### ROC曲線の読み方
 * 4隅の点が意味する状態:
@@ -72,16 +72,17 @@ Scikit-learn での定義と解説は[こちら](https://scikit-learn.org/1.5/mo
   * この線を下回ると、サイコロを振るより性能が悪いということ
 * 曲線の下側の面積 (AUC; area under the curve) が1に近いほど理想に近づく
 * ROC曲線と理想からのずれ
-  * y軸とROC曲線の隙間は、閾値が高い段階でFPRが上がる傾向。上のヒストグラムのグレーの分布が高確率まで広がっている状態を意味する
-  * x軸と平行なy=1の線とROC曲線の隙間は、閾値が高い段階でTPRが下がる傾向で、上のヒストグラムの正解クラス（カラー）の分布が低い確率まで広がっている状態を意味する
-  * これらのテールの規模でROC曲線の凹み具合が決まる
+  * y軸とROC曲線の隙間は、閾値が高い段階でFPRが上がる傾向。下図のヒストグラムのグレーの分布が高確率まで広がっている状態を意味する
+  * x軸と平行なy=1の線とROC曲線の隙間は、閾値が高い段階でTPRが下がる傾向で、下図のヒストグラムの正解クラス（カラー）の分布が低い確率まで広がっている状態を意味する
+  * これらヒストグラムのテールの規模でROC曲線の凹み具合が決まる
   * 上図の例では:
     * "Chinstrap"クラスは他と比べて不正解クラスで高確率に予測されやすい傾向
     * "Adelie"クラスは他と比べて正解クラスで低確率に予測されやすい傾向
 
-ROC曲線の理解のため、分類モデルが予測する確率値のヒストグラムを描く。
-分類では、確率値に閾値を決めて、その閾値以上のサンプルをそのクラスの予測値とする（通常の閾値は0.5）。
-閾値を1から0へ、つまりヒストグラムの右から左へ動かして、TPRとFPRの関係をプロットしたものがROC曲線である。
+![roc_penguins](figures_dir/hist_penguins.png)
+ROC曲線の理解のため、分類モデルが予測する確率値のヒストグラムを描いた。  
+分類では、確率値に閾値を決めて、その閾値以上のサンプルをそのクラスの予測値とする（通常の閾値は0.5）。  
+閾値を1から0へ、つまりヒストグラムの右から左へ動かして、TPRとFPRの関係をプロットしたものがROC曲線である。  
 ※ 同様にしてprecisionとrecallの関係をプロットしたprecision-recall 曲線もある。
 
 ### 多クラスの場合
